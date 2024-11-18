@@ -17,9 +17,11 @@ dependencies:
   http:
   intl:
   logger:
+  lottie: ^2.7.0 #the latest version may not be working
   url_launcher:
   flutter_native_splash:
   smooth_page_indicator: ^1.2.0+3
+  shimmer:
 
 
   # Icons
@@ -31,17 +33,22 @@ dependencies:
   get_storage:
 
   # Product Specific
-  carousel_slider:
   readmore:
+  carousel_slider:
   flutter_rating_bar:
   capped_progress_indicator:
-  connectivity_plus:
+  connectivity_plus: ^5.0.1 #use 5.0.1 latest version is problematic
+
+  # Firebase
   firebase_storage:
+  firebase_core: #^2.23.0
+  firebase_auth: #^4.14.0
+  cloud_firestore: #^5.5.0
 
 
 
-  #--------------- ./ PACKAGES END ------------------#
 
+#--------------- ./ PACKAGES END ------------------#
 dev_dependencies:
   flutter_test:
     sdk: flutter
