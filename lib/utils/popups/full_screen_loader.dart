@@ -8,9 +8,9 @@ import 'package:t_store/utils/helpers/helper_functions.dart';
 class TFullScreenLoader {
   ///open a full-screen loaidng dialog with a given text and animation
   ///
-  ///Prarameters:
+  /// Prarameters:
   /// - text: The text to be displayed in the loading dialog
-  ///  - animation: The Lottie animation to be shown
+  /// - animation: The Lottie animation to be shown
 
   static void openLoadingDialog(String text, String animation) {
     showDialog(
@@ -35,8 +35,8 @@ class TFullScreenLoader {
     );
   }
 
-  ///stop the currently open loading dialog
-  ///The method doesn't return anuthing
+  /// Stop the currently open loading dialog
+  /// The method doesn't return anuthing
   static stopLoading() {
     Navigator.of(Get.overlayContext!)
         .pop(); //close the dialog using the navigator

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widgets/loaders/loaders.dart';
 
+// This is basically useful for phone connection to an internet source like T-Mobile/wifi, not useful for device access to the internet
 /// Manage the network connectivity status and provides methods to check and handle connectivity changes.
 class NetworkManager extends GetxController {
   static NetworkManager get instance => Get.find();
@@ -16,6 +17,7 @@ class NetworkManager extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     _connectivitySubscription =
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
@@ -23,7 +25,6 @@ class NetworkManager extends GetxController {
   /// Update the connection status based on changes in connectivity and show a relevant popup for no internet connection
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
     _connectionStatus.value = result;
-
     if (_connectionStatus.value == ConnectivityResult.none) {
       TLoaders.warningSnackBar(title: 'No Internet Connection');
     }

@@ -37,7 +37,7 @@ dependencies:
   carousel_slider:
   flutter_rating_bar:
   capped_progress_indicator:
-  connectivity_plus: ^5.0.1 #use 5.0.1 latest version is problematic
+  connectivity_plus: #^5.0.1 #use 5.0.1 latest version is problematic
 
   # Firebase
   firebase_storage:

@@ -49,6 +49,8 @@ class SignupController extends GetxController {
 
       /// Privacy Policy Check
       if (!privacyPolicy.value) {
+        TFullScreenLoader.stopLoading();
+
         TLoaders.warningSnackBar(
             title: 'Accept Privacy Policy',
             message:
@@ -72,6 +74,7 @@ class SignupController extends GetxController {
           profilePicture: '');
 
       final userRepository = Get.put(UserRepository());
+
       await userRepository.saveUserRecord(newUser);
 
       /// Remove Loader
@@ -84,14 +87,13 @@ class SignupController extends GetxController {
 
       /// Move to Verify Email Screen
       Get.to(() => const VerifyEmailScreen());
-
-      // ignore: empty_catches
     } catch (e) {
-      /// Show some Generic Error to the user
-      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
-    } finally {
       /// Remove Loader
       TFullScreenLoader.stopLoading();
+      print('Catch: ${e.toString()}');
+
+      /// Show some Generic Error to the user
+      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }
   }
 }

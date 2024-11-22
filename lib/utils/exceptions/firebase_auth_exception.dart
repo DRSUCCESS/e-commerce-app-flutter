@@ -6,6 +6,7 @@ class TFirebaseAuthException implements Exception {
   TFirebaseAuthException(this.code);
 
   String get message {
+    print('FirebaseCode:$code');
     switch (code) {
       case 'email-already-in-use':
         return 'The email address is already registered. Please use a different email.';
@@ -59,9 +60,10 @@ class TFirebaseAuthException implements Exception {
         return 'The email template verification message payload is invalid.';
       case 'invalid-sender':
         return 'The email template sender is invalid. Please verify the sender\'s email.';
-
+      case 'network-request-failed':
+        return 'Network has no internet connection';
       default:
-        return 'A Firebase error occurred. Please try again.';
+        return 'FirebaseError:$code \nAn error occurred. Please try again.';
     }
   }
 }
