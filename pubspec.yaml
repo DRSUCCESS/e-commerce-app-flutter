@@ -17,7 +17,7 @@ dependencies:
   http:
   intl:
   logger:
-  lottie: ^2.7.0 #the latest version may not be working
+  lottie: ^2.7.0 #works for animation: the latest version may not be working
   url_launcher:
   flutter_native_splash:
   smooth_page_indicator: ^1.2.0+3

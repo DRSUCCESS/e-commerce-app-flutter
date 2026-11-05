@@ -14,7 +14,7 @@ class App extends StatelessWidget {
         themeMode: ThemeMode.system,
         theme: TAppTheme.lightTheme,
         darkTheme: TAppTheme.darkTheme,
-        initialBinding: GeneralBindings(),
+        initialBinding: GeneralBindings(), // autoload/bind all necessary classes
 
         /// Show Loader or Circular Progress Indicator meanwhile Authentication Repository is deciding to show relevant screen.
         ///

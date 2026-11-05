@@ -26,6 +26,30 @@ class SignupController extends GetxController {
 
   /// -- SIGNUP
   void signup() async {
+    /// Register user in the Firebase Authentication & Save user data in the Firebase
+    final dynamic userCredential = await AuthenticationRepository.instance
+        .registerWithEmailAndPassword(email.text.trim(), password.text.trim());
+
+    print(
+        'User Credential: ${userCredential.user}\n\nuserCredentialType:${userCredential.runtimeType}');
+
+    /// Save Authenticated user data in the Firebase firestore
+    final dynamic newUser = UserModel(
+        id: userCredential.user!.uid,
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        username: username.text.trim(),
+        email: email.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        profilePicture: '');
+
+    // final userRepository = Get.put(UserRepository());
+
+    // await userRepository.saveUserRecord(newUser);
+    print('New User: ${newUser.toString()}');
+    return;
+
+    // ignore: dead_code
     try {
       /// Start Loading
       TFullScreenLoader.openLoadingDialog(
@@ -59,12 +83,14 @@ class SignupController extends GetxController {
       }
 
       /// Register user in the Firebase Authentication & Save user data in the Firebase
-      final userCredential = await AuthenticationRepository.instance
+      final dynamic userCredential = await AuthenticationRepository.instance
           .registerWithEmailAndPassword(
               email.text.trim(), password.text.trim());
 
+      print('User Credential: ${userCredential.user}');
+
       /// Save Authenticated user data in the Firebase firestore
-      final newUser = UserModel(
+      final dynamic newUser = UserModel(
           id: userCredential.user!.uid,
           firstName: firstName.text.trim(),
           lastName: lastName.text.trim(),
@@ -73,9 +99,10 @@ class SignupController extends GetxController {
           phoneNumber: phoneNumber.text.trim(),
           profilePicture: '');
 
-      final userRepository = Get.put(UserRepository());
+      // final userRepository = Get.put(UserRepository());
 
-      await userRepository.saveUserRecord(newUser);
+      // await userRepository.saveUserRecord(newUser);
+      print('New User: ${newUser.toString()}');
 
       /// Remove Loader
       TFullScreenLoader.stopLoading();
@@ -90,10 +117,11 @@ class SignupController extends GetxController {
     } catch (e) {
       /// Remove Loader
       TFullScreenLoader.stopLoading();
-      print('Catch: ${e.toString()}');
+      print('Oh Snap!\n${e.toString()}');
 
       /// Show some Generic Error to the user
-      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+      TLoaders.errorSnackBar(
+          title: 'Oh Snap!', message: e.toString(), duration: 5);
     }
   }
 }

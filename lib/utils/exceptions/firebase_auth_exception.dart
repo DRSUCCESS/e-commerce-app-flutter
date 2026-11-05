@@ -6,7 +6,6 @@ class TFirebaseAuthException implements Exception {
   TFirebaseAuthException(this.code);
 
   String get message {
-    print('FirebaseCode:$code');
     switch (code) {
       case 'email-already-in-use':
         return 'The email address is already registered. Please use a different email.';

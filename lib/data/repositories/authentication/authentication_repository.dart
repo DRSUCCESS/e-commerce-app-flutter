@@ -44,11 +44,13 @@ class AuthenticationRepository extends GetxController {
   /// [EmailAuthentication] - REGISTER
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
+    final result = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    print('Result:$result');
+
     try {
-      final result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      print(
-          'authResult:$result \nresultCredential:${result.credential} \nresultAddInfo:${result.additionalUserInfo} \nresultUser:${result.user}');
+      // final result = await _auth.createUserWithEmailAndPassword(
+      //     email: email, password: password);
       return result;
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;
@@ -59,7 +61,9 @@ class AuthenticationRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Something went wrong. Please try again... \n\nerrorRuntimeType:${e.runtimeType} \nerrorMsg:${e.toString()}';
+      print(
+          'Something went wrong. Please try again... \n\nerrorRuntimeType:${e.runtimeType} \nerrorMsg:${e.toString()}');
+      throw 'Something went wrong. Please try again...';
     }
   }
 
